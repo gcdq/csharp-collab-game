@@ -1,16 +1,16 @@
 # Umowa zespołu
 
-Nazwa zespołu: …
-Adres repozytorium: …
-Wspólny TargetFramework: …
-Lider pierwszej integracji: …
-Autor zapisu TESTY.md: …
+Nazwa zespołu: Bortki
+Adres repozytorium: https://github.com/gcdq/csharp-collab-game/
+Wspólny TargetFramework: net10.0
+Lider pierwszej integracji: Franek
+Autor zapisu TESTY.md: Erwin
 
 | Osoba | Sekcja | Branch | Osoba sprawdzająca |
 |---|---|---|---|
-| … | … | … | … |
-| … | … | … | … |
-| … | … | … | … |
+| Franek | A | … | … |
+| Piotrek | B | … | … |
+| Erwin | C | … | … |
 
 Nie zmieniamy kontraktu bez uzgodnienia. Nie formatujemy całego Program.cs.
 
