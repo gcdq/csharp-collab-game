@@ -125,11 +125,27 @@ void Rozejrzyj()
 // SEKCJA B: RUCH. Wlasciciel: osoba B.
 void Idz(string kierunek)
 {
-    // TODO B1: odrzuc ruch po zakonczeniu gry (return).
-    // TODO B2: policz nastepnyPokoj, nie zmieniaj jeszcze wspolnego pokoj.
-    // TODO B3: odrzuc nieznany kierunek i ruch poza pokoje 1..4.
-    // TODO B4: zatwierdz pokoj, wywolaj Rozejrzyj i raz ZakonczTure.
-    Console.WriteLine("TODO B: ruch " + kierunek);
+    if(koniec) return;
+    
+    int nastepnyPokoj = pokoj;
+
+    if(kierunek == "lewo") nastepnyPokoj--;
+    else if(kierunek == "prawo") nastepnyPokoj++;
+    else
+    {
+        Console.WriteLine("Zly kierunek!");
+        return;
+    }
+
+    if(nastepnyPokoj < 1 || nastepnyPokoj > 4) 
+    {
+        Console.WriteLine($"Jestes na granicy! Nie możesz isc w {kierunek}");
+        return;
+    }
+
+    pokoj = nastepnyPokoj;
+    Rozejrzyj();
+    ZakonczTure();
 }
 
 // SEKCJA C: PRZEDMIOTY I WYGRANA. Wlasciciel: osoba C.

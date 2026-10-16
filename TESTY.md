@@ -5,9 +5,9 @@ Każdą próbę zaczynamy od start. Po sekwencji wpisujemy status. Komendy z tab
 | Nr | Próba i komendy po start | Oczekiwane | Otrzymane / osoba |
 |---|---|---|---|
 | 1 | mapa, pomoc, opis, status | 4 pokoje, 1 znacznik przy recepcji; energia 10 | … |
-| 2 | lewo, gora, pusty Enter | Pokój 1, energia 10 | … |
-| 3 | prawo | Pokój 2, energia 9 | … |
-| 4 | prawo, prawo, prawo, prawo | Pokój 4, energia 7; ostatni ruch odrzucony | … |
+| 2 | lewo, gora, pusty Enter | Pokój 1, energia 10 | Piotrek14689 |
+| 3 | prawo | Pokój 2, energia 9 | Piotrek14689 |
+| 4 | prawo, prawo, prawo, prawo | Pokój 4, energia 7; ostatni ruch odrzucony | Piotrek14689 |
 | 5 | karta, karta | Karta True, energia 9 | … |
 | 6 | bezpiecznik | Bezpiecznik False, energia 10 | … |
 | 7 | prawo, prawo, napraw | Pokój 3, energia 8, zasilanie False | … |

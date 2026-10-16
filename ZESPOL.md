@@ -4,7 +4,7 @@ Nazwa zespołu: Bortki
 Adres repozytorium: https://github.com/gcdq/csharp-collab-game/
 Wspólny TargetFramework: net10.0
 Lider pierwszej integracji: Franek
-Autor zapisu TESTY.md: Erwin
+Autor zapisu TESTY.md: Piotrek14689
 
 | Osoba | Sekcja | Branch | Osoba sprawdzająca |
 |---|---|---|---|
