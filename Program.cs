@@ -98,28 +98,75 @@ void Status()
 // SEKCJA A: INFORMACJE I MAPA. Wlasciciel: osoba A.
 string NazwaPokoju(int numer)
 {
-    // TODO A1: zwroc nazwe dla 1, 2, 3, 4 oraz wartosc dla nieznanego numeru.
-    return "Pokoj " + numer;
+    switch (numer) {
+        case 1: return "Recepcja";
+        case 2: return "Magazyn";
+        case 3: return "Serwerowania";
+        case 4: return "Wyjście";
+    }
+
+    return "Nieznane pomieszczenie";
 }
 
 void Pomoc()
 {
-    // TODO A2: wypisz wszystkie komendy oraz koszt czynnosci.
-    Console.WriteLine("TODO A: pomoc, status, mapa, opis, lewo, prawo,");
-    Console.WriteLine("karta, bezpiecznik, napraw, wyjdz, start, koniec.");
+    Console.WriteLine("\nPomoc:");
+    Console.WriteLine("\tpomoc          Wyświetla polecenia i zasady rozgrywki");
+    Console.WriteLine("\tstatus         Wyświetla dane rozgrywki");
+    Console.WriteLine("\tmapa           Wyświetla pokoje i znacznik pozycji");
+    Console.WriteLine("\topis           Rozejrzenie się w aktualnym pokoju");
+    Console.WriteLine("\tlewo           Cofnięcie się do poprzedniego pokoju (E)");
+    Console.WriteLine("\tprawo          Pójście do następnego pokoju (E)");
+    Console.WriteLine("\tkarta          Próba zabrania karty (E)");
+    Console.WriteLine("\tbezpiecznik    Próba zabrania bezpiecznika (E)");
+    Console.WriteLine("\tnapraw         Próba naprawy zasilania (E)");
+    Console.WriteLine("\twyjdz          Próba otwarcia drzwi (E)");
+    Console.WriteLine("\tstart          Rozpoczęcie nowej rozgrywki");
+    Console.WriteLine("\tkoniec         Zamknięcie programu\n");
+
+    Console.WriteLine("\tTylko udany ruch i akcja które są oznaczone jako (E)\n\tspowoduje zabranie energi\n");
 }
 
 void Mapa()
 {
-    // TODO A3: petla for, numery 1..4, jeden znacznik aktualnego pokoju.
-    Console.WriteLine("TODO A: mapa.");
+    Console.WriteLine("");
+    for (int numer = 1; numer <= 4; numer++) 
+    {
+        if (numer == pokoj)
+            Console.WriteLine(numer + ". " + NazwaPokoju(numer) + " <-- jestes tutaj");
+        else
+            Console.WriteLine(numer + ". " + NazwaPokoju(numer));
+    }
+    Console.WriteLine("");
 }
 
 void Rozejrzyj()
 {
-    Console.WriteLine("Jestes w: " + NazwaPokoju(pokoj));
-    // TODO A4: opis zalezy od pokoju oraz obecnosci przedmiotow/zasilania.
-    Console.WriteLine("TODO A: opis pokoju.");
+    Console.WriteLine("\nJestes w: " + NazwaPokoju(pokoj));
+
+    if (pokoj == 1 && !karta)
+        Console.WriteLine("\tKarta jest na biurku");
+    else if (pokoj == 1)
+        Console.WriteLine("\tKarta została już podniesiona");
+    else if (pokoj == 2 && !bezpiecznik && !zasilanie)
+        Console.WriteLine("\tBezpiecznik jest na półce");
+    else if (pokoj == 2)
+        Console.WriteLine("\tBezpiecznik został już podniesiony");
+    else if (pokoj == 3 && !zasilanie)
+        Console.WriteLine("\tZasilanie nie zostało podłączone");
+    else if (pokoj == 3)
+        Console.WriteLine("\tZasilanie zostało podłączone");
+    else if (pokoj == 4 && zasilanie && karta)
+        Console.WriteLine("\tMasz kartę i zasilanie");
+    else if (pokoj == 4 && karta)
+        Console.WriteLine("\tMasz kartę ale nie masz zasilania");
+    else if (pokoj == 4 && zasilanie)
+        Console.WriteLine("\tNie masz karty ale masz zasilanie");
+    else if (pokoj == 4)
+        Console.WriteLine("\tNie masz ani karty, ani zasilania");
+    else
+        Console.WriteLine("\tnie wiem");
+    Console.WriteLine("");
 }
 
 // SEKCJA B: RUCH. Wlasciciel: osoba B.
