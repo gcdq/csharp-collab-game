@@ -218,7 +218,7 @@ void Akcja(string co)
     }
     if(co == "bezpiecznik")
     {
-        if(pokoj != 2 || !bezpiecznik || !zasilanie)
+        if(pokoj != 2 || bezpiecznik || zasilanie)
         {
             Console.WriteLine("Tutaj nie ma bezpiecznika do zebrania.");
             return;
