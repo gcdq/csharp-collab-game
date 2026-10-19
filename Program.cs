@@ -135,9 +135,74 @@ void Idz(string kierunek)
 // SEKCJA C: PRZEDMIOTY I WYGRANA. Wlasciciel: osoba C.
 void Akcja(string co)
 {
-    // TODO C1: odrzuc akcje po zakonczeniu gry.
-    // TODO C2: obsluz karta, bezpiecznik, napraw, wyjdz zgodnie z kontraktem.
-    // TODO C3: przy odmowie wypisz powod i wykonaj return.
-    // TODO C4: tylko po udanej akcji wywolaj raz ZakonczTure.
-    Console.WriteLine("TODO C: akcja " + co);
+    if(koniec)
+    {
+        Console.WriteLine("Gra została zakończona.");
+        return; 
+    }
+
+    if(co == "karta")
+    {
+        if(pokoj != 1 || karta)
+        {
+            Console.WriteLine("Tutaj nie ma karty do zebrania.");
+            return;
+        }
+        karta = true;
+        Console.WriteLine("Zabierasz karte.");
+        ZakonczTure();
+        return;
+    }
+    if(co == "bezpiecznik")
+    {
+        if(pokoj != 2 || !bezpiecznik || !zasilanie)
+        {
+            Console.WriteLine("Tutaj nie ma bezpiecznika do zebrania.");
+            return;
+        }
+        bezpiecznik = true;
+        Console.WriteLine("Zabierasz bezpiecznik.");
+        ZakonczTure();
+        return;
+    }
+    if(co == "napraw")
+    {
+        if(pokoj != 3)
+        {
+            Console.WriteLine("Nie możesz naprawić zasilania w tym pokoju.");
+            return;
+        }else if(zasilanie)
+        {
+            Console.WriteLine("Zasilanie jest włączone.");
+            return;
+        }else if (!bezpiecznik)
+        {
+            Console.WriteLine("Nie masz bezpiecznika.");
+            return;
+        }
+        bezpiecznik = false;
+        zasilanie = true;
+        Console.WriteLine("Naprawiasz zasilanie!");
+        ZakonczTure();
+        return;
+    }
+    if(co == "wyjdz")
+    {
+        if(pokoj != 4)
+        {
+            Console.WriteLine("Nie możesz wyjść z tego pokoju.");
+            return;
+        }else if (!karta)
+        {
+            Console.WriteLine("Nie masz karty, nie możesz wyjść.");
+            return;
+        }else if (!zasilanie)
+        {
+            Console.WriteLine("Zasilanie jest wyłączone, nie możesz wyjść.");            
+            return;
+        }
+        wygrana = true;
+        koniec = true;
+        ZakonczTure();
+    }
 }
