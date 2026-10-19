@@ -110,14 +110,13 @@ string NazwaPokoju(int numer)
 
 void Pomoc()
 {
-    // TODO A2: wypisz wszystkie komendy oraz koszt czynnosci.
     Console.WriteLine("\nPomoc:");
     Console.WriteLine("\tpomoc          Wyświetla polecenia i zasady rozgrywki");
     Console.WriteLine("\tstatus         Wyświetla dane rozgrywki");
     Console.WriteLine("\tmapa           Wyświetla pokoje i znacznik pozycji");
     Console.WriteLine("\topis           Rozejrzenie się w aktualnym pokoju");
-    Console.WriteLine("\tlewo           Ruch o pokój wcześniejszy (E)");
-    Console.WriteLine("\tprawo          Ruch o pokój późniejszy (E)");
+    Console.WriteLine("\tlewo           Cofnięcie się do poprzedniego pokoju (E)");
+    Console.WriteLine("\tprawo          Pójście do następnego pokoju (E)");
     Console.WriteLine("\tkarta          Próba zabrania karty (E)");
     Console.WriteLine("\tbezpiecznik    Próba zabrania bezpiecznika (E)");
     Console.WriteLine("\tnapraw         Próba naprawy zasilania (E)");
@@ -145,14 +144,26 @@ void Rozejrzyj()
 {
     Console.WriteLine("\nJestes w: " + NazwaPokoju(pokoj));
 
-    if (pokoj == 1)
-        Console.WriteLine("\tKarta jest na biurku tylko przed zabraniem");
+    if (pokoj == 1 && !karta)
+        Console.WriteLine("\tKarta jest na biurku");
+    else if (pokoj == 1)
+        Console.WriteLine("\tKarta została już podniesiona");
+    else if (pokoj == 2 && !bezpiecznik && !zasilanie)
+        Console.WriteLine("\tBezpiecznik jest na półce");
     else if (pokoj == 2)
-        Console.WriteLine("\tBezpiecznik jest na półce tylko, gdy nie ma go w kieszeni i nie jest zamontowany");
+        Console.WriteLine("\tBezpiecznik został już podniesiony");
+    else if (pokoj == 3 && !zasilanie)
+        Console.WriteLine("\tZasilanie nie zostało podłączone");
     else if (pokoj == 3)
-        Console.WriteLine("\tOpis zależy od zasilania");
+        Console.WriteLine("\tZasilanie zostało podłączone");
+    else if (pokoj == 4 && zasilanie && karta)
+        Console.WriteLine("\tMasz kartę i zasilanie");
+    else if (pokoj == 4 && karta)
+        Console.WriteLine("\tMasz kartę ale nie masz zasilania");
+    else if (pokoj == 4 && zasilanie)
+        Console.WriteLine("\tNie masz karty ale masz zasilanie");
     else if (pokoj == 4)
-        Console.WriteLine("\tPrzypomnij kartę i prąd");
+        Console.WriteLine("\tNie masz ani karty, ani zasilania");
     else
         Console.WriteLine("\tnie wiem");
     Console.WriteLine("");
