@@ -88,7 +88,7 @@ void ZakonczTure()
 void Status()
 {
     Console.WriteLine("Pokoj: " + pokoj);
-    Console.WriteLine("Energia: " + energia + "/" + MAKS_ENERGIA);
+    Console.WriteLine("Energia: " + energia + "/" + MAKS_ENERGIA + " " + OcenaEnergii(energia));
     Console.WriteLine("Pasek Energii: " + PasekEnergii());
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
@@ -283,4 +283,18 @@ string PasekEnergii()
             tekst += ".";
     }
     return tekst;
+}
+
+string OcenaEnergii(int wartosc)
+{
+    if(wartosc<0 || wartosc>MAKS_ENERGIA)
+        return "Nieprawidłowa wartość";
+    else if(wartosc == 0)
+        return "Brak energii";
+    else if(wartosc<=3)
+        return "Niski zapas";
+    else if(wartosc<=6)
+        return "Uważaj na zbędne ruchy";
+    else 
+        return "Duży zapas";
 }
