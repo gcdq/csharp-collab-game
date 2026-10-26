@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Serialization;
 
 // WSPOLNY KONTRAKT. Wszystkie dane inicjalizujemy przed Start().
 const int MAKS_ENERGIA = 10;
@@ -88,6 +89,7 @@ void Status()
 {
     Console.WriteLine("Pokoj: " + pokoj);
     Console.WriteLine("Energia: " + energia + "/" + MAKS_ENERGIA);
+    Console.WriteLine("Pasek Energii: " + PasekEnergii());
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
     Console.WriteLine("Zasilanie: " + zasilanie);
@@ -268,4 +270,17 @@ void Akcja(string co)
         koniec = true;
         ZakonczTure();
     }
+}
+
+string PasekEnergii()
+{
+    string tekst = "";
+    for(int i = 0; i < MAKS_ENERGIA; i++)
+    {
+        if (i < energia)
+            tekst += "#";
+        else 
+            tekst += ".";
+    }
+    return tekst;
 }
