@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.Serialization;
 
 // WSPOLNY KONTRAKT. Wszystkie dane inicjalizujemy przed Start().
 const int MAKS_ENERGIA = 10;
@@ -98,8 +97,57 @@ void Status()
     Console.WriteLine("Ostatnia czynność: " + ostatniaCzynnosc);
     Console.WriteLine("Koniec: " + koniec);
     Console.WriteLine("Wygrana: " + wygrana);
+    if (energia >= MinimalnyKosztWygranej() && !koniec)
+    {
+        Console.WriteLine("Minimalny koszt: "+ MinimalnyKosztWygranej() + "; energia: " + energia + " wystarcza.");
+    }
+    else if (energia < MinimalnyKosztWygranej() && !koniec)
+    {
+        Console.WriteLine("Minimalny koszt: "+ MinimalnyKosztWygranej() + "; energia: " + energia + " nie wystarcza.");
+    }
 }
+int MinimalnyKosztWygranej()
+{
+    int koszt = 0;
+    int pokojSymulacja = pokoj;
 
+    if (!karta)
+    {
+        koszt += 1 + Odleglosc(pokojSymulacja,1);
+        pokojSymulacja = 1;
+    }
+    if (!bezpiecznik && !zasilanie)
+    {
+        //bezpiecznik
+        koszt += 1 + Odleglosc(pokojSymulacja,2);
+        pokojSymulacja = 2;
+        //zasilanie
+        koszt += 1 + Odleglosc(pokojSymulacja,3);
+        pokojSymulacja = 3;
+    }
+    if (bezpiecznik)
+    {
+        koszt += 1 + Odleglosc(pokojSymulacja,3);
+        pokojSymulacja = 3;
+    }
+    if (wygrana)
+    {
+        return 0;
+    }
+    return koszt + Odleglosc(pokojSymulacja,4) + 1;
+}
+int Odleglosc(int pokojPoczatkowy, int pokojDocelowy)
+{ 
+    if (pokojPoczatkowy > pokojDocelowy)
+    {
+        return pokojPoczatkowy - pokojDocelowy;
+    }
+    else if (pokojDocelowy > pokojPoczatkowy)
+    {
+        return pokojDocelowy - pokojPoczatkowy;
+    }
+    return 0;
+}
 // SEKCJA A: INFORMACJE I MAPA. Wlasciciel: osoba A.
 string NazwaPokoju(int numer)
 {
