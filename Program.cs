@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Serialization;
 
 // WSPOLNY KONTRAKT. Wszystkie dane inicjalizujemy przed Start().
 const int MAKS_ENERGIA = 10;
@@ -9,6 +10,7 @@ bool bezpiecznik = false;
 bool zasilanie = false;
 bool koniec = false;
 bool wygrana = false;
+string ostatniaCzynnosc;
 
 // SEKCJA 0: GOTOWY SILNIK NAUCZYCIELA. Nie zmieniaj w zadaniu podstawowym.
 Start();
@@ -61,6 +63,7 @@ void Start()
     zasilanie = false;
     koniec = false;
     wygrana = false;
+    ostatniaCzynnosc = "Brak — początek rozgrywki";
     Console.WriteLine("UCIECZKA Z SERWEROWNI: PIATEK, 16:59.");
     Console.WriteLine("Administrator napisal: u mnie dziala. Drzwi twierdza inaczej.");
     Console.WriteLine("Masz " + MAKS_ENERGIA + " energii. Wpisz pomoc. Koniec zamyka program.");
@@ -87,10 +90,12 @@ void ZakonczTure()
 void Status()
 {
     Console.WriteLine("Pokoj: " + pokoj);
-    Console.WriteLine("Energia: " + energia + "/" + MAKS_ENERGIA);
+    Console.WriteLine("Energia: " + energia + "/" + MAKS_ENERGIA + " " + OcenaEnergii(energia));
+    Console.WriteLine("Pasek Energii: " + PasekEnergii());
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
     Console.WriteLine("Zasilanie: " + zasilanie);
+    Console.WriteLine("Ostatnia czynność: " + ostatniaCzynnosc);
     Console.WriteLine("Koniec: " + koniec);
     Console.WriteLine("Wygrana: " + wygrana);
 }
@@ -190,6 +195,7 @@ void Idz(string kierunek)
         return;
     }
 
+    ostatniaCzynnosc = $"Ruch w {kierunek} do pomieszczenia {NazwaPokoju(nastepnyPokoj)}";
     pokoj = nastepnyPokoj;
     Rozejrzyj();
     ZakonczTure();
@@ -213,6 +219,7 @@ void Akcja(string co)
         }
         karta = true;
         Console.WriteLine("Zabierasz karte.");
+        ostatniaCzynnosc = "Zabranie karty";
         ZakonczTure();
         return;
     }
@@ -225,6 +232,7 @@ void Akcja(string co)
         }
         bezpiecznik = true;
         Console.WriteLine("Zabierasz bezpiecznik.");
+        ostatniaCzynnosc = "Zabranie bezpiecznika";
         ZakonczTure();
         return;
     }
@@ -245,6 +253,7 @@ void Akcja(string co)
         }
         bezpiecznik = false;
         zasilanie = true;
+        ostatniaCzynnosc = "Naprawa zasilania";
         Console.WriteLine("Naprawiasz zasilanie!");
         ZakonczTure();
         return;
@@ -264,8 +273,36 @@ void Akcja(string co)
             Console.WriteLine("Zasilanie jest wyłączone, nie możesz wyjść.");            
             return;
         }
+        ostatniaCzynnosc = "Wyjście i wygrana";
         wygrana = true;
         koniec = true;
         ZakonczTure();
     }
+}
+
+string PasekEnergii()
+{
+    string tekst = "";
+    for(int i = 0; i < MAKS_ENERGIA; i++)
+    {
+        if (i < energia)
+            tekst += "#";
+        else 
+            tekst += ".";
+    }
+    return tekst;
+}
+
+string OcenaEnergii(int wartosc)
+{
+    if(wartosc<0 || wartosc>MAKS_ENERGIA)
+        return "Nieprawidłowa wartość";
+    else if(wartosc == 0)
+        return "Brak energii";
+    else if(wartosc<=3)
+        return "Niski zapas";
+    else if(wartosc<=6)
+        return "Uważaj na zbędne ruchy";
+    else 
+        return "Duży zapas";
 }
