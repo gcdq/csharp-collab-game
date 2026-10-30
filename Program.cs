@@ -11,6 +11,8 @@ bool koniec = false;
 bool wygrana = false;
 string ostatniaCzynnosc;
 
+int licznikOdrzuconychProbRuchu = 0;
+
 bool brakWiadomosci = false;
 
 int zgodne = 0;
@@ -93,7 +95,7 @@ void Start()
     zasilanie = false;
     koniec = false;
     wygrana = false;
-
+    licznikOdrzuconychProbRuchu = 0;
     ostatniaCzynnosc = "Brak — początek rozgrywki";
 
     WriteIfNoTest("UCIECZKA Z SERWEROWNI: PIATEK, 16:59.");
@@ -116,6 +118,7 @@ void AutoTest()
 
     brakWiadomosci = true;
 
+    int testlicznikOdrzuconychProbRuchu = licznikOdrzuconychProbRuchu;
     // Próba 1.
 
     Console.Write("\nTest numer 1:\n\n");
@@ -210,6 +213,7 @@ void AutoTest()
     wygrana = testWygrana;
     ostatniaCzynnosc = testOstatniaCzynnosc;
 
+    licznikOdrzuconychProbRuchu = testlicznikOdrzuconychProbRuchu;
     Console.Write("\nPrzywrócono wszystkie poprzednie wartości\n");
     Status();
 
@@ -245,6 +249,7 @@ void Status()
     Console.WriteLine("Ostatnia czynność: " + ostatniaCzynnosc);
     Console.WriteLine("Koniec: " + koniec);
     Console.WriteLine("Wygrana: " + wygrana);
+    Console.WriteLine("Liczba odrzuconych prób ruchu: " + licznikOdrzuconychProbRuchu);
     if (energia >= MinimalnyKosztWygranej() && !koniec)
     {
         Console.WriteLine("Minimalny koszt: "+ MinimalnyKosztWygranej() + "; energia: " + energia + " wystarcza.");
@@ -391,6 +396,7 @@ void Idz(string kierunek)
     if(nastepnyPokoj < 1 || nastepnyPokoj > 4) 
     {
         WriteIfNoTest($"Jestes na granicy! Nie możesz isc w {kierunek}");
+        licznikOdrzuconychProbRuchu++;
         return;
     }
 
