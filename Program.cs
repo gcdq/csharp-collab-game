@@ -10,7 +10,7 @@ bool zasilanie = false;
 bool koniec = false;
 bool wygrana = false;
 string ostatniaCzynnosc;
-int LicznikOdrzuconychProbRuchu = 0;
+int licznikOdrzuconychProbRuchu = 0;
 // SEKCJA 0: GOTOWY SILNIK NAUCZYCIELA. Nie zmieniaj w zadaniu podstawowym.
 Start();
 while (true)
@@ -62,7 +62,7 @@ void Start()
     zasilanie = false;
     koniec = false;
     wygrana = false;
-    LicznikOdrzuconychProbRuchu = 0;
+    licznikOdrzuconychProbRuchu = 0;
     ostatniaCzynnosc = "Brak — początek rozgrywki";
     Console.WriteLine("UCIECZKA Z SERWEROWNI: PIATEK, 16:59.");
     Console.WriteLine("Administrator napisal: u mnie dziala. Drzwi twierdza inaczej.");
@@ -98,7 +98,7 @@ void Status()
     Console.WriteLine("Ostatnia czynność: " + ostatniaCzynnosc);
     Console.WriteLine("Koniec: " + koniec);
     Console.WriteLine("Wygrana: " + wygrana);
-    Console.WriteLine("Liczba odrzuconych prób ruchu: " + LicznikOdrzuconychProbRuchu);
+    Console.WriteLine("Liczba odrzuconych prób ruchu: " + licznikOdrzuconychProbRuchu);
     if (energia >= MinimalnyKosztWygranej() && !koniec)
     {
         Console.WriteLine("Minimalny koszt: "+ MinimalnyKosztWygranej() + "; energia: " + energia + " wystarcza.");
@@ -242,7 +242,7 @@ void Idz(string kierunek)
     if(nastepnyPokoj < 1 || nastepnyPokoj > 4) 
     {
         Console.WriteLine($"Jestes na granicy! Nie możesz isc w {kierunek}");
-        LicznikOdrzuconychProbRuchu++;
+        licznikOdrzuconychProbRuchu++;
         return;
     }
 
