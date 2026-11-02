@@ -11,6 +11,15 @@ bool koniec = false;
 bool wygrana = false;
 string ostatniaCzynnosc;
 
+string[] pokoje = {
+    "Recepcja",
+    "Magazyn",
+    "Serwerowania",
+    "Wyjście"
+};
+
+bool[] odwiedzonePokoje = new bool[pokoje.Length];
+
 bool brakWiadomosci = false;
 
 int zgodne = 0;
@@ -94,6 +103,10 @@ void Start()
     koniec = false;
     wygrana = false;
 
+    for (int i = 0; i < odwiedzonePokoje.Length; i++)
+        odwiedzonePokoje[i] = false;
+    odwiedzonePokoje[0] = true;
+
     ostatniaCzynnosc = "Brak — początek rozgrywki";
 
     WriteIfNoTest("UCIECZKA Z SERWEROWNI: PIATEK, 16:59.");
@@ -113,6 +126,7 @@ void AutoTest()
     bool testWygrana = wygrana;
 
     string testOstatniaCzynnosc = ostatniaCzynnosc;
+    bool[] testOdwiedzonePokoje = odwiedzonePokoje;
 
     brakWiadomosci = true;
 
@@ -209,6 +223,7 @@ void AutoTest()
     koniec = testKoniec;
     wygrana = testWygrana;
     ostatniaCzynnosc = testOstatniaCzynnosc;
+    odwiedzonePokoje = testOdwiedzonePokoje;
 
     Console.Write("\nPrzywrócono wszystkie poprzednie wartości\n");
     Status();
@@ -299,12 +314,9 @@ int Odleglosc(int pokojPoczatkowy, int pokojDocelowy)
 // SEKCJA A: INFORMACJE I MAPA. Wlasciciel: osoba A.
 string NazwaPokoju(int numer)
 {
-    switch (numer) {
-        case 1: return "Recepcja";
-        case 2: return "Magazyn";
-        case 3: return "Serwerowania";
-        case 4: return "Wyjście";
-    }
+
+    if (numer >= 1 && numer <= pokoje.Length)
+        return pokoje[numer - 1];
 
     return "Nieznane pomieszczenie";
 }
