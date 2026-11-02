@@ -65,10 +65,21 @@ while (true)
         case "bezpiecznik": Akcja("bezpiecznik"); break;
         case "napraw": Akcja("napraw"); break;
         case "wyjdz": Akcja("wyjdz"); break;
+        case "odkrycia": PokazOdkrycia(); break;
         default: Console.WriteLine("Nieznane polecenie. Wpisz pomoc."); break;
     }
 }
 
+void PokazOdkrycia()
+{
+    Console.Write("Odkryte pokoje: ");
+    for (int i = 0; i < pokoje.Length; i++)
+    {
+        if (odwiedzonePokoje[i]) Console.Write("nr " + (i+1) + " " + pokoje[i] + ", ");
+    }
+    Console.Write("\n");
+    Console.WriteLine("Liczba odwiedzonych pokoi: " + PoliczOdwiedzone(odwiedzonePokoje) + "/4");
+}
 // Własny assert()
 void Sprawdz(string nazwa, bool warunek)
 {
@@ -273,6 +284,16 @@ void Status()
     {
         Console.WriteLine("Minimalny koszt: "+ MinimalnyKosztWygranej() + "; energia: " + energia + " nie wystarcza.");
     }
+}
+
+int PoliczOdwiedzone(bool[] dane)
+{
+    int licznik = 0;
+    foreach (bool i in dane)
+    {
+        if (i) licznik++;
+    }
+    return licznik;
 }
 int MinimalnyKosztWygranej()
 {
