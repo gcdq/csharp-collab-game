@@ -72,13 +72,14 @@ while (true)
 
 void PokazOdkrycia()
 {
-    Console.Write("Odkryte pokoje: ");
+    Console.WriteLine("Odkryte pokoje: ");
     for (int i = 0; i < pokoje.Length; i++)
     {
-        if (odwiedzonePokoje[i]) Console.Write("nr " + (i+1) + " " + pokoje[i] + ", ");
+        if (odwiedzonePokoje[i]) 
+            Console.WriteLine($"{i+1}. {pokoje[i]} ");
+        
     }
-    Console.Write("\n");
-    Console.WriteLine("Liczba odwiedzonych pokoi: " + PoliczOdwiedzone(odwiedzonePokoje) + "/4");
+    Console.WriteLine($"Liczba odwiedzonych pokoi: {PoliczOdwiedzone(odwiedzonePokoje)}/4");
 }
 // Własny assert()
 void Sprawdz(string nazwa, bool warunek)
@@ -340,7 +341,6 @@ int Odleglosc(int pokojPoczatkowy, int pokojDocelowy)
 // SEKCJA A: INFORMACJE I MAPA. Wlasciciel: osoba A.
 string NazwaPokoju(int numer)
 {
-
     if (numer >= 1 && numer <= pokoje.Length)
         return pokoje[numer - 1];
 
