@@ -20,6 +20,16 @@ Każdą próbę zaczynamy od start. Po sekwencji wpisujemy status. Komendy z tab
 | 14 | Po końcu gry: start, status | Pokój 1, energia 10, wszystkie flagi False | gcdq / Erwin676767 |
 | 15 | Wpisz spacje + PRAWO + spacje | Pokój 2, energia 9; wielkość liter i skrajne spacje nie przeszkadzają | gcdq / Erwin676767 |
 | 16 | koniec | Aplikacja wraca do terminala | gcdq / Erwin676767 |
+| T2.1 | start, odkrycia, mapa, status | Odkryty tylko pokój 1; 1/4; energia 10; jeden znacznik bieżącej pozycji. | Erwin676767 |
+| T2.2 | start, prawo, lewo, prawo, odkrycia, status | Odkryte 1 i 2; 2/4; pokój 2; energia 7. Powroty nie zwiększają liczby różnych pokojów. | Erwin676767 |
+| T2.3 | start, prawo, prawo, prawo, odkrycia | 4/4; energia 7. Nazwy i znaczniki zgadzają się z pozycją. | Erwin676767 |
+| T2.4 | start, lewo, gora, pusty Enter, odkrycia | 1/4; pokój 1; energia 10. | Erwin676767 |
+| T2.5 | start, prawo, odkrycia, mapa, opis, status, odkrycia | Nadal 2/4 i energia 9; żadna informacja nie odkrywa nowego pokoju. | Erwin676767 |
+| T2.6 | Po T2.3: start, odkrycia | Ponownie tylko pokój 1; energia 10. | Erwin676767 |
+| T2.7 | start; pięć razy para prawo, lewo; prawo, odkrycia, status | Przegrana; pokój 1; energia 0; 2/4. Ruch po końcu nie działa, odczyt działa. | Erwin676767 |
+| T2.8 | start, karta, prawo, bezpiecznik, prawo, napraw, prawo, wyjdz, odkrycia | Wygrana; energia 3; 4/4; odkrycia nie zmieniają wyniku. | Erwin676767 |
+| T2.9 | Osobny test funkcji: nazwy dla 0 i 5; zliczenie pustej bool[] | Nieznane pomieszczenie dla obu numerów; wynik zliczenia 0; bez odwołania poza tablicę. | Erwin676767 |
+| T2.10 | start, polecenie ODKRYCIA ze skrajnymi spacjami | Ten sam odczyt co odkrycia; energia 10. | Erwin676767 |
 
 ## Nasza droga zwycięska
 karta -> prawo -> bezpiecznik -> prawo -> napraw -> prawo -> wyjdz
