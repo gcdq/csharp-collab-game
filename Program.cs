@@ -350,10 +350,12 @@ void Mapa()
     Console.WriteLine("");
     for (int numer = 1; numer <= 4; numer++) 
     {
+        string odkryte = odwiedzonePokoje[numer-1] ? "odkryty" : "nieodkryty";
         if (numer == pokoj)
-            Console.WriteLine(numer + ". " + NazwaPokoju(numer) + " <-- jestes tutaj");
+            Console.WriteLine($"{numer}. {NazwaPokoju(numer)} ({odkryte})  <-- jestes tutaj");
         else
-            Console.WriteLine(numer + ". " + NazwaPokoju(numer));
+            Console.WriteLine($"{numer}. {NazwaPokoju(numer)} ({odkryte})");
+
     }
     Console.WriteLine("");
 }
@@ -414,6 +416,7 @@ void Idz(string kierunek)
 
     ostatniaCzynnosc = $"Ruch w {kierunek} do pomieszczenia {NazwaPokoju(nastepnyPokoj)}";
     pokoj = nastepnyPokoj;
+    odwiedzonePokoje[pokoj-1] = true;
     Rozejrzyj();
     ZakonczTure();
 }
