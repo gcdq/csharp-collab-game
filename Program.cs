@@ -79,7 +79,16 @@ void PokazOdkrycia()
             Console.WriteLine($"{i+1}. {pokoje[i]} ");
         
     }
-    Console.WriteLine($"Liczba odwiedzonych pokoi: {PoliczOdwiedzone(odwiedzonePokoje)}/4");
+    
+    switch (PoliczOdwiedzone(odwiedzonePokoje))
+    {
+        case 1: Console.WriteLine("Odwiedzono jeden z czterech pokoi"); break;
+        case 2: Console.WriteLine("Odwiedzono dwa z czterech pokoi"); break;
+        case 3: Console.WriteLine("Odwiedzono trzy z czterech pokoi"); break;
+        case 4: Console.WriteLine("Odwiedzono wszystkie pokoje!"); break;
+        default: Console.WriteLine("Błąd"); break;
+    }
+
     Console.Write("Pasek odkryć: ");
     for (int i = 0; i < pokoje.Length; i++)
     {
