@@ -83,7 +83,7 @@ void PokazOdkrycia()
     Console.Write("Pasek odkryć: ");
     for (int i = 0; i < pokoje.Length; i++)
     {
-        if(odwiedzonePokoje[i])
+        if (odwiedzonePokoje[i])
             Console.Write("#");
         else
             Console.Write(".");
