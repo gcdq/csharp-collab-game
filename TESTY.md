@@ -30,6 +30,9 @@ Każdą próbę zaczynamy od start. Po sekwencji wpisujemy status. Komendy z tab
 | T2.8 | start, karta, prawo, bezpiecznik, prawo, napraw, prawo, wyjdz, odkrycia | Wygrana; energia 3; 4/4; odkrycia nie zmieniają wyniku. | Erwin676767 |
 | T2.9 | Osobny test funkcji: nazwy dla 0 i 5; zliczenie pustej bool[] | Nieznane pomieszczenie dla obu numerów; wynik zliczenia 0; bez odwołania poza tablicę. | Erwin676767 |
 | T2.10 | start, polecenie ODKRYCIA ze skrajnymi spacjami | Ten sam odczyt co odkrycia; energia 10. | Erwin676767 |
+| T2.11 | start, odkrycia | Pasek odkryć: #... | Piotrek14689 | 
+| T2.12 | start, prawo, lewo, odkrycia | Pasek odkryć: ##.. | Piotrek14689 |
+| T2.13 | start, prawo, prawo,, prawo odkrycia | Pasek odkryć: #### | Piotrek14689 |
 
 ## Nasza droga zwycięska
 karta -> prawo -> bezpiecznik -> prawo -> napraw -> prawo -> wyjdz
